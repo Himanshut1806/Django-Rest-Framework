@@ -8,7 +8,7 @@ class LoginSerializer(serializers.Serializer):
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Color
-        fields = ['id', 'color_name']
+        fields = ['id','color_name']
 
 class PeopleSerializer(serializers.ModelSerializer):
     color = ColorSerializer(read_only=True)
@@ -19,7 +19,7 @@ class PeopleSerializer(serializers.ModelSerializer):
         model = Person 
         fields = '__all__'
 
-    def get_color_info(self, obj):
+    def get_color_info(self, obj): 
         if obj.color: 
             return {'color_name': obj.color.color_name}
         return None
